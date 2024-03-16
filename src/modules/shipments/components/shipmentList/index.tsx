@@ -1,4 +1,4 @@
-import {View, Text, FlatList, RefreshControl} from 'react-native';
+import {FlatList, RefreshControl} from 'react-native';
 import React from 'react';
 import Container from '../../../../shared/components/common/viewWrapper';
 import AText from '../../../../shared/components/common/customText';

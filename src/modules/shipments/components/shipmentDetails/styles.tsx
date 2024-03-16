@@ -44,7 +44,7 @@ export default StyleSheet.create({
     borderStyle: 'dashed',
     borderColor: colors.white,
     borderBottomLeftRadius: wp(10),
-      borderBottomRightRadius: wp(10),
+    borderBottomRightRadius: wp(10),
   },
   buttons: {
     flexDirection: 'row',

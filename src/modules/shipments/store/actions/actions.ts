@@ -1,0 +1,1 @@
+export const GET_ALL_SHIPPMENTS = 'GET_ALL_SHIPMENTS';
