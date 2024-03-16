@@ -1,15 +1,17 @@
-import {FlatList, RefreshControl} from 'react-native';
+import {FlatList, RefreshControl, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Container from '../../../../shared/components/common/viewWrapper';
 import AText from '../../../../shared/components/common/customText';
 import ShipmentDetails from '../shipmentDetails';
 import styles from './styles';
 import Icons from '../../../../assets/icons';
+import {colors} from '../../../../assets/colors';
 
 interface Props {
   onRefresh?: () => void;
   onSelect: (text: string) => void;
-  refreshing?: boolean;
+  refreshing: boolean;
+  loading?: boolean;
 }
 
 const ShipmentList = (props: Props) => {
@@ -43,24 +45,25 @@ const ShipmentList = (props: Props) => {
         <Container>
           <AText>Shipments</AText>
         </Container>
-        <Container style={styles.markAll}>
-          <Icons name="checkbox-blank-outline" iconName="MatCom" />
+        <TouchableOpacity style={styles.markAll}>
+          <Icons
+            name="checkbox-blank-outline"
+            iconName="MatCom"
+            color={colors.borderColor}
+          />
           <AText>Mark All</AText>
-        </Container>
+        </TouchableOpacity>
       </Container>
       <FlatList
         data={data}
-        refreshing={false}
+        refreshing={refreshing}
         contentContainerStyle={styles.listCon}
         onRefresh={onRefresh}
         renderItem={({item}) => (
           <ShipmentDetails item={item} onSelect={onSelect} />
         )}
         refreshControl={
-          <RefreshControl
-            refreshing={refreshing as boolean}
-            progressViewOffset={100}
-          />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
     </Container>

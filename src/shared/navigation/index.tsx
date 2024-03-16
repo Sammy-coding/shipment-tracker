@@ -13,8 +13,7 @@ const NavigationContainer = () => {
   const [stat, setStat] = useState({
     showSplashScreen: false,
   });
-  const {isAuthSuccess, data, error} = useAppSelector(state => state.auth);
-  console.log(data);
+  const {isAuthSuccess} = useAppSelector(state => state.auth);
 
   return (
     <Navigation>
@@ -26,7 +25,7 @@ const NavigationContainer = () => {
               component={SplashScreen}
             />
           </Stack.Group>
-        ) : !isAuthSuccess ? (
+        ) : isAuthSuccess ? (
           <Stack.Group>
             <Stack.Screen name="Auth" component={AuthNavigation} />
           </Stack.Group>

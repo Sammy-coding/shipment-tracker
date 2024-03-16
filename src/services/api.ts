@@ -11,8 +11,8 @@ export default {
   },
   shipment: {
     retrieve(data: IShipmentReq) {
-      const path: string = 'frappe.client.get_list';
-      return clientRequest('GET', path, data);
+      const path: string = '/frappe.client.get_list';
+      return clientRequest('POST', path, data);
     },
   },
 };

@@ -15,6 +15,37 @@ interface Props {
 const ShipmentDetails = (props: Props) => {
   const {item} = props;
   const [showMore, setShowMore] = useState(false);
+
+  const getStatusBackground = (status: string) => {
+    switch (status) {
+      case 'RECEIVED':
+        return '#D9E6FD';
+      case 'CANCELED':
+        return '#F4F2F8';
+      case 'ERROR':
+        return '#FEE3D4';
+      case 'DELIVERED':
+        return '#E3FAD6';
+      default:
+        return '#F4F2F8';
+    }
+  };
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'RECEIVED':
+        return '#2F50C1';
+      case 'CANCELED':
+        return '#58536E';
+      case 'ERROR':
+        return '#D12030';
+      case 'DELIVERED':
+        return '#208D28';
+      default:
+        return '#F4F2F8';
+    }
+  };
+
   return (
     <>
       <Container
@@ -27,7 +58,11 @@ const ShipmentDetails = (props: Props) => {
         ph={12}
         pv={12}>
         <TouchableOpacity>
-          <Icons name="checkbox-blank-outline" iconName="MatCom" />
+          <Icons
+            name="checkbox-blank-outline"
+            iconName="MatCom"
+            color={colors.borderColor}
+          />
         </TouchableOpacity>
         <Container>
           <Image
@@ -62,8 +97,12 @@ const ShipmentDetails = (props: Props) => {
           </Container>
         </Container>
 
-        <Container style={styles.status} pv={4} ph={6}>
-          <AText fs={11} color={colors.placeholderSecondaryColor}>
+        <Container
+          style={styles.status}
+          pv={4}
+          ph={6}
+          bg={getStatusBackground(item.status)}>
+          <AText fs={11} color={getStatusText(item.status)}>
             {item?.status}
           </AText>
         </Container>

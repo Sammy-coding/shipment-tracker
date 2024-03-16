@@ -10,4 +10,9 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
   },
+  modalCon: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: colors.overlayColor,
+  },
 });

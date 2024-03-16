@@ -27,8 +27,8 @@ const CustomModal = (props: Props) => {
     <Modal visible={visible} transparent={isTransparent}>
       <Pressable onPress={onPressOverlay ? onPressOverlay : () => {}}>
         <Container
-          ht={926}
-          wt={428}
+          ht={844}
+          wt={393}
           bg={overlayColor ? overlayColor : undefined}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{

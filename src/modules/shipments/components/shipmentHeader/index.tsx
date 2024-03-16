@@ -13,10 +13,13 @@ interface Props {
   fullname?: string;
   searchValue?: string;
   onSearch?: (text: string) => void;
+  onPressAddIcon: () => void;
+  onPressFilterIcon: () => void;
 }
 
 const ShipmentHeader = (props: Props) => {
-  const {fullname, onSearch, searchValue} = props;
+  const {fullname, onSearch, searchValue, onPressAddIcon, onPressFilterIcon} =
+    props;
   return (
     <Container>
       <Container style={styles.headerContainer}>
@@ -68,7 +71,10 @@ const ShipmentHeader = (props: Props) => {
         />
       </Container>
       <Container>
-        <ShipmentActionButton />
+        <ShipmentActionButton
+          onPressAddScan={onPressAddIcon}
+          onPressFilter={onPressFilterIcon}
+        />
       </Container>
     </Container>
   );

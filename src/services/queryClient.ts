@@ -14,7 +14,10 @@ export default function clientRequest(
     method,
     url: path,
     data: payload,
-    // json: true,
+    Headers: {
+      'Content-Type': 'application/json',
+    },
+    json: true,
   };
 
   return queryClient(options);
