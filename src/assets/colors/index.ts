@@ -11,4 +11,5 @@ export const colors = {
   disabledBGColor: '#EAE7F2',
   placeholderSecondaryColor: '#58536E',
   overlayColor: 'rgba(0,0,0,0.2)',
+  cardColor: 'rgba(244,242,248, 0.4)',
 };

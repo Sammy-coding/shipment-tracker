@@ -4,12 +4,11 @@ import {hp, wp} from '../../../../shared/utils/responsive';
 export default StyleSheet.create({
   container: {},
   listCon: {
-    gap: hp(12),
+    gap: hp(8),
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // width: 361
   },
   markAll: {
     flexDirection: 'row',

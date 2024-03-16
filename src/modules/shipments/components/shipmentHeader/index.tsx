@@ -22,7 +22,7 @@ const ShipmentHeader = (props: Props) => {
       <Container style={styles.headerContainer}>
         <Container>
           <Image
-            source={require('../../../../assets/images/avatar-icon.png')}
+            source={require('../../../../assets/images/Frame49.png')}
             style={styles.imageContainer}
           />
         </Container>
