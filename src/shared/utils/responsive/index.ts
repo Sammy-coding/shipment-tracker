@@ -4,9 +4,9 @@ import {
 } from 'react-native-responsive-screen';
 
 export const wp = (dimension: number) => {
-  return wp2dp((dimension / 428) * 100 + '%');
+  return wp2dp((dimension / 393) * 100 + '%');
 };
 
 export const hp = (dimension: number) => {
-  return hp2dp((dimension / 926) * 100 + '%');
+  return hp2dp((dimension / 844) * 100 + '%');
 };
