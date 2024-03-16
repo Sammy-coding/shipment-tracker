@@ -1,5 +1,5 @@
 import {Dimensions, FlexAlignType, PixelRatio} from 'react-native';
-import {hp} from '../responsive';
+import {hp, wp} from '../responsive';
 
 const screenHeight: number = Dimensions.get('screen').height;
 
@@ -58,4 +58,16 @@ export const getPerfectRadius = (num: number) => {
     width: numberToUse * screenHeight,
     ...perfectRadius,
   };
+};
+
+interface IImageNav {
+  width: number | undefined;
+  height: number;
+  resizeMode: string;
+}
+
+export const imageNav: IImageNav = {
+  width: wp(24.61),
+  height: hp(30),
+  resizeMode: 'contain',
 };

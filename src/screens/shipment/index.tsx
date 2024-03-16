@@ -11,12 +11,7 @@ import Container from '../../shared/components/common/viewWrapper';
 
 const ShippmentScreen = () => {
   const {data} = useAppSelector(state => state.auth);
-  const {
-    data: shipmentData,
-    loading,
-    statusData,
-    statusLoading,
-  } = useAppSelector(state => state.shipment);
+  const {data: shipmentData, loading} = useAppSelector(state => state.shipment);
   const dispatch = useAppDispatch();
   const [state, setState] = useState({
     isRefreshing: false,
@@ -76,33 +71,6 @@ const ShippmentScreen = () => {
 
   const handleAddIcon = () => {};
 
-  const someData = [
-    {
-      status: 'Received',
-      id: 2882,
-    },
-    {
-      status: 'Lost',
-      id: 8848,
-    },
-    {
-      status: 'Canceled',
-      id: 8383,
-    },
-    {
-      status: 'Delivered',
-      id: 8483,
-    },
-    {
-      status: 'On Hold',
-      id: 8683,
-    },
-    {
-      status: 'Put Away',
-      id: 8783,
-    },
-  ];
-
   return (
     <Screen style={styles.container}>
       <ShipmentHeader
@@ -115,6 +83,7 @@ const ShippmentScreen = () => {
         onSelect={onSelect}
         loading={loading}
         refreshing={state.isRefreshing}
+        data={shipmentData}
       />
       <CustomModal
         visible={state.isFilterModalOpened}
@@ -126,7 +95,6 @@ const ShippmentScreen = () => {
             onDone={onDone}
             onSelect={onSelectFilter}
             selected={state.selectedStatus}
-            data={someData}
           />
         </Container>
       </CustomModal>

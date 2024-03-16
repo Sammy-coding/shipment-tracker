@@ -9,6 +9,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
   markAll: {
     flexDirection: 'row',

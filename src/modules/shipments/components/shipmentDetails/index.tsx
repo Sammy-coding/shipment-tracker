@@ -42,7 +42,7 @@ const ShipmentDetails = (props: Props) => {
       case 'DELIVERED':
         return '#208D28';
       default:
-        return '#F4F2F8';
+        return '#58536E';
     }
   };
 
@@ -73,17 +73,17 @@ const ShipmentDetails = (props: Props) => {
         <Container style={styles.details} wt={121}>
           <Container>
             <AText ta="left" fs={13}>
-              {item?.name}
+              AWB
             </AText>
           </Container>
           <Container>
             <AText fs={18} ta="left">
-              {item?.id}
+              {item?.name}
             </AText>
           </Container>
           <Container style={styles.address}>
             <AText fs={13} color={colors.greyColor}>
-              {item.from.toLowerCase()}
+              {item?.origin_state?.toLowerCase()}
             </AText>
             <Icons
               name="arrowright"
@@ -92,7 +92,7 @@ const ShipmentDetails = (props: Props) => {
               color={colors.primaryColor}
             />
             <AText fs={13} color={colors.greyColor}>
-              {item?.to?.toLowerCase()}
+              {item?.destination_state?.toLowerCase()}
             </AText>
           </Container>
         </Container>
@@ -128,16 +128,16 @@ const ShipmentDetails = (props: Props) => {
               <AText ta="left" fs={11} color={colors.primaryColor}>
                 Origin
               </AText>
-              <AText ta="left">Cairo</AText>
+              <AText ta="left">{item?.origin_state}</AText>
               <AText color={colors.placeholdePrimaryrColor}>
-                Dokki, 22 Nile st.
+                {item?.origin_area ? item.origin_area : 'No Area Provided'}
               </AText>
             </Container>
             <Container>
               <Icons
                 name="arrowright"
                 iconName="Ant"
-                size={12}
+                size={21}
                 color={colors.primaryColor}
               />
             </Container>
@@ -145,18 +145,24 @@ const ShipmentDetails = (props: Props) => {
               <AText fs={11} ta="left" color={colors.primaryColor}>
                 Destination
               </AText>
-              <AText ta="left">Alexandria</AText>
+              <AText ta="left">{item?.destination_state}</AText>
               <AText ta="left" color={colors.placeholdePrimaryrColor}>
-                Smoha, 22 max st.
+                {item?.destination_area
+                  ? item.destination_area
+                  : 'No Area Provided'}
               </AText>
             </Container>
           </Container>
           <Container style={styles.buttons} mt={20}>
             <Container>
-              <CustomButton wt={100} ht={40}></CustomButton>
+              <CustomButton wt={100} ht={40} bg={'#2F50C1'}>
+                <AText color={colors.white}>Call</AText>
+              </CustomButton>
             </Container>
             <Container>
-              <CustomButton wt={100} ht={40}></CustomButton>
+              <CustomButton wt={100} ht={40} bg="#208D28">
+                <AText color={colors.white}>Whatsapp</AText>
+              </CustomButton>
             </Container>
           </Container>
         </Container>

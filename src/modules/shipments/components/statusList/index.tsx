@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from '../../../../shared/components/common/viewWrapper';
 import AText from '../../../../shared/components/common/customText';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native';
