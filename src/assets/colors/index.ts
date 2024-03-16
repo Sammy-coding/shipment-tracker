@@ -6,5 +6,9 @@ export const colors = {
   successColor: 'green',
   errorColor: 'red',
   inputColor: 'rgba(244,242,248, 0.5)',
-  placeholderColor: '#A7A3B3',
+  placeholdePrimaryrColor: '#A7A3B3',
+  disabledTextColor: '#A7A3B3',
+  disabledBGColor: '#EAE7F2',
+  placeholderSecondaryColor: '#58536E',
+  overlayColor: 'rgba(0,0,0,0.2)',
 };

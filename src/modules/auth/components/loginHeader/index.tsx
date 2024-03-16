@@ -5,10 +5,15 @@ import AText from '../../../../shared/components/common/customText';
 import styles from './styles';
 import {colors} from '../../../../assets/colors';
 
-const LoginHeader = () => {
+interface Props {
+  onClose: () => void;
+}
+
+const LoginHeader = (props: Props) => {
+  const {onClose} = props;
   return (
     <Container mh={16} style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity onPress={onClose} style={styles.backButton}>
         <AText fs={17} color={colors.cancelColor}>
           Cancel
         </AText>

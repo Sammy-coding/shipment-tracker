@@ -14,7 +14,7 @@ export default function clientRequest(
     method,
     url: path,
     data: payload,
-    json: true,
+    // json: true,
   };
 
   return queryClient(options);

@@ -51,7 +51,7 @@ const AText = (props: Props) => {
         // eslint-disable-next-line react-native/no-inline-styles
         {
           ...style,
-          color: color,
+          color: style?.color ? style.color : color ? color : null,
           marginHorizontal: style?.marginHorizontal
             ? style.marginHorizontal
             : mh
@@ -76,8 +76,8 @@ const AText = (props: Props) => {
             : null,
           paddingRight: pr && wp(pr),
           width: wt && wp(wt),
-          fontWeight: fw ? fw : 'normal',
-          fontSize: fs ? hp(fs) : hp(14),
+          fontWeight: style?.fontWeight ? style.fontWeight : fw ? fw : 'normal',
+          fontSize: style?.fontSize ? style.fontSize : fs ? hp(fs) : hp(14),
           textAlign: ta ? ta : 'center',
         },
       ]}>

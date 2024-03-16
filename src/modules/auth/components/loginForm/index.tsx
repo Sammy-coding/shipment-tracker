@@ -3,7 +3,7 @@ import Container from '../../../../shared/components/common/viewWrapper';
 import styles from './styles';
 import AppInput from '../../../../shared/components/common/customInput';
 import {colors} from '../../../../assets/colors';
-import {useInputFocus} from '../../../../shared/utils/useInputFocus';
+import {useInputFocus} from '../../../../shared/hooks/useInputFocus';
 import {wp} from '../../../../shared/utils/responsive';
 
 interface Props {
@@ -22,21 +22,24 @@ const LoginForm = (prop: Props) => {
     ref: urlRef,
     inputStyle: urlInputStyle,
     translateUp: urlTranslateUp,
-  } = useInputFocus();
+    labelStyle: urlLabelStyle,
+  } = useInputFocus(url);
   const {
     inputContainerStyle: userInputContainerStyle,
     onFocused: onEmailFocused,
     ref: emailRef,
     inputStyle: userInputStyle,
     translateUp: userTranslateUp,
-  } = useInputFocus();
+    labelStyle: userLabelStyle,
+  } = useInputFocus(username);
   const {
     inputContainerStyle: passwordInputContainerStyle,
     onFocused: onPasswordFocused,
     ref: passwordRef,
     inputStyle: passwordInputStyle,
     translateUp: passwordTranslateUp,
-  } = useInputFocus();
+    labelStyle: passwordLabelStyle,
+  } = useInputFocus(password);
 
   return (
     <Container style={styles.container} mh={16} mt={38}>
@@ -46,11 +49,11 @@ const LoginForm = (prop: Props) => {
           value={url}
           ref={urlRef}
           wt={361}
-          labelStyle={{paddingLeft: wp(14)}}
+          labelStyle={{paddingLeft: wp(14), ...urlLabelStyle}}
           onChange={(text: string) => onChange(text, 'url')}
           container={{...styles.outerContainer, ...urlInputContainerStyle}}
           inputContainer={styles.inputContainer}
-          inputStyle={{...urlInputStyle.inputStyle}}
+          inputStyle={{...urlInputStyle.inputStyle, color: colors.primaryColor}}
           translateUp={urlTranslateUp}
           isLabelAnimated={true}
           label="URL"
@@ -60,7 +63,6 @@ const LoginForm = (prop: Props) => {
           onBlur={() => {
             onUrlFocused();
           }}
-          placeholderTextColor={colors.placeholderColor}
         />
       </Container>
 
@@ -75,7 +77,7 @@ const LoginForm = (prop: Props) => {
           onBlur={() => {
             onEmailFocused();
           }}
-          labelStyle={{paddingLeft: wp(14)}}
+          labelStyle={{paddingLeft: wp(14), ...userLabelStyle}}
           wt={361}
           label="Username / Email"
           translateUp={userTranslateUp}
@@ -84,7 +86,6 @@ const LoginForm = (prop: Props) => {
           inputContainer={styles.inputContainer}
           inputStyle={{...userInputStyle.inputStyle}}
           isLabelAnimated={true}
-          placeholderTextColor={colors.placeholderColor}
         />
       </Container>
 
@@ -97,7 +98,7 @@ const LoginForm = (prop: Props) => {
           isLabelAnimated={true}
           ref={passwordRef}
           wt={361}
-          labelStyle={{paddingLeft: wp(14)}}
+          labelStyle={{paddingLeft: wp(14), ...passwordLabelStyle}}
           onChange={(text: string) => onChange(text, 'password')}
           container={{...styles.outerContainer, ...passwordInputContainerStyle}}
           inputContainer={styles.inputContainer}
@@ -108,7 +109,6 @@ const LoginForm = (prop: Props) => {
             onPasswordFocused();
           }}
           inputStyle={{...passwordInputStyle.inputStyle}}
-          placeholderTextColor={colors.placeholderColor}
           secureTextEntry={true}
         />
       </Container>
