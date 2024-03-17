@@ -26,8 +26,8 @@ interface Props {
 
 const ModalForFilter = (props: Props) => {
   const dispatch = useAppDispatch();
-    const { statusData, statusLoading } = useAppSelector(state => state.shipment);
-    console.log(statusData)
+  const {statusData, statusLoading} = useAppSelector(state => state.shipment);
+  console.log(statusData, 'data');
 
   const {onCancel, onSelect, selected, onDone} = props;
 
@@ -39,7 +39,7 @@ const ModalForFilter = (props: Props) => {
   const fetchShipmentStatus = useCallback(() => {
     const dataToBeSent = {
       doctype: 'AWB Status',
-      fields: ['status, creation'],
+      fields: ['status', 'creation'],
     };
     dispatch(shipmentStatus(dataToBeSent));
     // eslint-disable-next-line react-hooks/exhaustive-deps

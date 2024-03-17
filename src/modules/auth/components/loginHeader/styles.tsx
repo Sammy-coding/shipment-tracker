@@ -7,5 +7,7 @@ export default StyleSheet.create({
   },
   backButton: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

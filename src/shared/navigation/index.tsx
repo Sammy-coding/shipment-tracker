@@ -24,7 +24,7 @@ const NavigationContainer = () => {
               component={SplashScreen}
             />
           </Stack.Group>
-        ) : !isAuthSuccess ? (
+        ) : isAuthSuccess ? (
           <Stack.Group>
             <Stack.Screen name="Auth" component={AuthNavigation} />
           </Stack.Group>

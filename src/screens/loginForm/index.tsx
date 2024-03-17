@@ -10,7 +10,8 @@ import {login} from '../../modules/auth/store/actions/action.creator';
 import {useAppDispatch, useAppSelector} from '../../shared/types/redux.types';
 import Loader from '../../shared/components/common/customLoader';
 import {isEmailValid, isPasswordValid} from '../../shared/utils/helpers';
-import {Alert} from 'react-native';
+import {Alert, KeyboardAvoidingView, Platform} from 'react-native';
+import {hp} from '../../shared/utils/responsive';
 
 const LoginFormScreen = () => {
   const navigation = useNavigation();
@@ -73,25 +74,31 @@ const LoginFormScreen = () => {
   const isButtonDisabled = !state.url || !state.username || !state.password;
 
   return (
-    <Container pt={20} bg={colors.white} style={styles.container}>
-      {loading && <Loader />}
-      <LoginHeader onClose={handleClose} />
-      <LoginForm
-        usernameError={state.validateError['username']}
-        passwordError={state.validateError['password']}
-        url={state.url}
-        password={state.password}
-        onChange={handleChange}
-        username={state.username}
-      />
-      <LoginButton
-        isButtonDisabled={isButtonDisabled}
-        onPress={handlePress}
-        bg={colors.primaryColor}
-        textColor={colors.white}
-        title="Login"
-      />
-    </Container>
+    <KeyboardAvoidingView
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{flex: 1}}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp(64) : hp(-60)}>
+      <Container pt={20} bg={colors.white} style={styles.container}>
+        {loading && <Loader />}
+        <LoginHeader onClose={handleClose} />
+        <LoginForm
+          usernameError={state.validateError['username']}
+          passwordError={state.validateError['password']}
+          url={state.url}
+          password={state.password}
+          onChange={handleChange}
+          username={state.username}
+        />
+        <LoginButton
+          isButtonDisabled={isButtonDisabled}
+          onPress={handlePress}
+          bg={colors.primaryColor}
+          textColor={colors.white}
+          title="Login"
+        />
+      </Container>
+    </KeyboardAvoidingView>
   );
 };
 

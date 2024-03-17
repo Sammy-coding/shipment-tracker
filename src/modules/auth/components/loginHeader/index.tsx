@@ -4,6 +4,7 @@ import Container from '../../../../shared/components/common/viewWrapper';
 import AText from '../../../../shared/components/common/customText';
 import styles from './styles';
 import {colors} from '../../../../assets/colors';
+import Icons from '../../../../assets/icons';
 
 interface Props {
   onClose: () => void;
@@ -14,6 +15,7 @@ const LoginHeader = (props: Props) => {
   return (
     <Container mh={16} style={styles.container}>
       <TouchableOpacity onPress={onClose} style={styles.backButton}>
+        <Icons name="left" iconName="Ant" color={colors.cancelColor} />
         <AText fs={17} color={colors.cancelColor}>
           Cancel
         </AText>

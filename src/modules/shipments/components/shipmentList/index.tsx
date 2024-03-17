@@ -38,7 +38,7 @@ const ShipmentList = (props: Props) => {
           <AText>Mark All</AText>
         </TouchableOpacity>
       </Container>
-      <Container>
+      <Container ht={420}>
         {loading ? (
           <ActivityIndicator size="large" />
         ) : (

@@ -5,7 +5,12 @@ import {shipment, shipmentStatus} from '../actions/action.creator';
 const shipmentSlice = createSlice({
   name: 'shipment',
   initialState: ShipmentState,
-  reducers: {},
+  reducers: {
+    clearError: state => {
+      state.error = null;
+      state.statusError = null;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(shipment.fulfilled, (state, action) => {
       state.data = action.payload;
@@ -15,8 +20,8 @@ const shipmentSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(shipment.rejected, (state, action) => {
-      state.error = action.payload
-        ? (action.payload as string)
+      state.error = action.error.message
+        ? (action.error.message as string)
         : 'Something went wrong';
       state.loading = false;
     });
@@ -26,8 +31,8 @@ const shipmentSlice = createSlice({
     });
     builder.addCase(shipmentStatus.rejected, (state, action) => {
       state.statusLoading = false;
-      state.statusError = action.payload
-        ? (action.payload as string)
+      state.statusError = action.error.message
+        ? (action.error.message as string)
         : 'someting went wrong';
     });
     builder.addCase(shipmentStatus.pending, state => {
@@ -36,4 +41,5 @@ const shipmentSlice = createSlice({
   },
 });
 
+export const {clearError} = shipmentSlice.actions;
 export default shipmentSlice.reducer;

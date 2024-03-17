@@ -15,6 +15,6 @@ export const shipmentStatus = createAsyncThunk(
   GET_SHIPMENTS_STATUS,
   async (data: IShipmentReq, thunkApi) => {
     const response = await clientRequest.shipment.retrieve(data);
-    return response.data;
+    return response?.data?.message;
   },
 );

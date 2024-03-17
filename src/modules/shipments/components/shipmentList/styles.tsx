@@ -5,6 +5,7 @@ export default StyleSheet.create({
   container: {},
   listCon: {
     gap: hp(8),
+    paddingBottom: hp(20),
   },
   header: {
     flexDirection: 'row',

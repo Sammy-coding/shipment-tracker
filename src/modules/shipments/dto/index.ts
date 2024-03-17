@@ -1,9 +1,7 @@
 export interface IShipmentReq {
   doctype: string;
   fields: string[];
-  filters?: {
-    name: string[];
-  };
+  filters?: {};
 }
 
 // name',

@@ -15,11 +15,18 @@ interface Props {
   onSearch?: (text: string) => void;
   onPressAddIcon: () => void;
   onPressFilterIcon: () => void;
+  onSearchSend: () => void;
 }
 
 const ShipmentHeader = (props: Props) => {
-  const {fullname, onSearch, searchValue, onPressAddIcon, onPressFilterIcon} =
-    props;
+  const {
+    fullname,
+    onSearch,
+    searchValue,
+    onPressAddIcon,
+    onPressFilterIcon,
+    onSearchSend,
+  } = props;
   return (
     <Container>
       <Container style={styles.headerContainer}>
@@ -68,6 +75,10 @@ const ShipmentHeader = (props: Props) => {
           }
           iconPosition="left"
           container={styles.inputCon}
+          returnKeyType="search"
+          onSubmitEditing={() => {
+            onSearchSend();
+          }}
         />
       </Container>
       <Container>
