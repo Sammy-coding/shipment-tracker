@@ -1,8 +1,10 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Make sure you have your environment configuration set up. Your android studio set up, environment variable in your shell. Before starting, run:
+```bash
+npx react-native doctor
+```
+This will identify the things you are missing in your setup that can stop your project from running. Whe you install them follow the processes below to run the app on a simulator.
 
 ## Step 1: Start the Metro Server
 
