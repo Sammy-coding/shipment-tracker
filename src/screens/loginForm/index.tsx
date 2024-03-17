@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from '../../shared/components/common/viewWrapper';
 import LoginHeader from '../../modules/auth/components/loginHeader';
 import LoginForm from '../../modules/auth/components/loginForm';
@@ -12,10 +12,11 @@ import Loader from '../../shared/components/common/customLoader';
 import {isEmailValid, isPasswordValid} from '../../shared/utils/helpers';
 import {Alert, KeyboardAvoidingView, Platform} from 'react-native';
 import {hp} from '../../shared/utils/responsive';
+import {clearError} from '../../modules/auth/store/reducer';
 
 const LoginFormScreen = () => {
   const navigation = useNavigation();
-  const {loading} = useAppSelector(state => state.auth);
+  const {loading, error, isAuthFailure} = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
   const [state, setState] = useState({
     url: '',
@@ -23,6 +24,14 @@ const LoginFormScreen = () => {
     username: '',
     validateError: {} as any,
   });
+
+  useEffect(() => {
+    if (isAuthFailure && error) {
+      Alert.alert(error);
+    }
+    dispatch(clearError());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, isAuthFailure]);
 
   const validateProperty = (name: string, value: string) => {
     if (name === 'username') {

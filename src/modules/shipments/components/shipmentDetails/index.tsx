@@ -10,11 +10,13 @@ import CustomButton from '../../../../shared/components/common/customButton';
 interface Props {
   item: any;
   onSelect: (text: string) => void;
+  isMarked: boolean;
 }
 
 const ShipmentDetails = (props: Props) => {
-  const {item} = props;
+  const {item, isMarked} = props;
   const [showMore, setShowMore] = useState(false);
+  const [isItemMarked, setIsItemMarked] = useState(false);
 
   const getStatusBackground = (status: string) => {
     switch (status) {
@@ -57,11 +59,19 @@ const ShipmentDetails = (props: Props) => {
         }}
         ph={12}
         pv={12}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setIsItemMarked(!isItemMarked)}>
           <Icons
-            name="checkbox-blank-outline"
+            name={
+              isItemMarked || isMarked
+                ? 'checkbox-intermediate'
+                : 'checkbox-blank-outline'
+            }
             iconName="MatCom"
-            color={colors.borderColor}
+            color={
+              isMarked || isItemMarked
+                ? colors.primaryColor
+                : colors.borderColor
+            }
           />
         </TouchableOpacity>
         <Container>

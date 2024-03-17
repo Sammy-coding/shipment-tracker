@@ -10,6 +10,7 @@ import ModalForFilter from '../../modules/shipments/components/modalForFilter';
 import Container from '../../shared/components/common/viewWrapper';
 import {Alert} from 'react-native';
 import {clearError} from '../../modules/shipments/store/reducer/shipment.slice';
+import {IShipmentData} from '../../modules/shipments/model/shipment.model';
 
 const ShippmentScreen = () => {
   const {data} = useAppSelector(state => state.auth);
@@ -25,6 +26,8 @@ const ShippmentScreen = () => {
     isFilterModalOpened: false,
     selectedStatus: [] as any,
     searchValue: '',
+    isMarked: false,
+    newData: [] as null | IShipmentData[],
   });
 
   useEffect(() => {
@@ -43,6 +46,11 @@ const ShippmentScreen = () => {
     fetchShipments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setState({...state, newData: shipmentData});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shipmentData]);
 
   const fetchShipments = useCallback(() => {
     const dataToBeSent = {
@@ -75,7 +83,14 @@ const ShippmentScreen = () => {
   };
 
   const onDone = () => {
-    setState({...state, isFilterModalOpened: false});
+    if (state.newData) {
+      const filteredData = state.newData.filter(val =>
+        state.selectedStatus.includes(val.status),
+      );
+      setState({...state, isFilterModalOpened: false, newData: filteredData});
+    } else {
+      setState({...state, isFilterModalOpened: false});
+    }
   };
 
   const onSelectFilter = (text: string) => {
@@ -119,6 +134,10 @@ const ShippmentScreen = () => {
     dispatch(shipment(dataToSend));
   };
 
+  const onMarkAll = () => {
+    setState({...state, isMarked: !state.isMarked});
+  };
+
   return (
     <Screen style={styles.container}>
       <ShipmentHeader
@@ -134,7 +153,9 @@ const ShippmentScreen = () => {
         onSelect={onSelect}
         loading={loading}
         refreshing={state.isRefreshing}
-        data={shipmentData}
+        data={state.newData}
+        onMarkAll={onMarkAll}
+        isMarked={state.isMarked}
       />
       <CustomModal
         visible={state.isFilterModalOpened}

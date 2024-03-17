@@ -19,21 +19,24 @@ interface Props {
   refreshing: boolean;
   loading?: boolean;
   data: IShipmentData[] | null;
+  onMarkAll: () => void;
+  isMarked: boolean;
 }
 
 const ShipmentList = (props: Props) => {
-  const {onRefresh, onSelect, refreshing, data, loading} = props;
+  const {onRefresh, onSelect, refreshing, data, loading, onMarkAll, isMarked} =
+    props;
   return (
     <Container mt={32}>
       <Container style={styles.header} mb={16}>
         <Container>
           <AText>Shipments</AText>
         </Container>
-        <TouchableOpacity style={styles.markAll}>
+        <TouchableOpacity onPress={onMarkAll} style={styles.markAll}>
           <Icons
-            name="checkbox-blank-outline"
+            name={isMarked ? 'checkbox-intermediate' : 'checkbox-blank-outline'}
             iconName="MatCom"
-            color={colors.borderColor}
+            color={isMarked ? colors.primaryColor : colors.borderColor}
           />
           <AText>Mark All</AText>
         </TouchableOpacity>
@@ -48,7 +51,11 @@ const ShipmentList = (props: Props) => {
             contentContainerStyle={styles.listCon}
             onRefresh={onRefresh}
             renderItem={({item}) => (
-              <ShipmentDetails item={item} onSelect={onSelect} />
+              <ShipmentDetails
+                item={item}
+                onSelect={onSelect}
+                isMarked={isMarked}
+              />
             )}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

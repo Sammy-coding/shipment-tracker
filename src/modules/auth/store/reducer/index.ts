@@ -5,7 +5,12 @@ import {login} from '../actions/action.creator';
 const authSlice = createSlice({
   name: 'auth',
   initialState: AuthState,
-  reducers: {},
+  reducers: {
+    clearError: state => {
+      state.error = null;
+      state.isAuthFailure = false;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(login.fulfilled, (state, action) => {
       state.data = action.payload;
@@ -17,10 +22,11 @@ const authSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload as string;
+      state.error = action.error.message as string;
       state.isAuthFailure = true;
     });
   },
 });
 
+export const {clearError} = authSlice.actions;
 export default authSlice.reducer;
