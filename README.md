@@ -1,6 +1,19 @@
 # Getting Started
 
->**Note**: Make sure you have your environment configuration set up. Your android studio set up, environment variable in your shell. Before starting, run:
+>**Note**: Before starting, install the dependencies by running:
+```bash
+# using npm
+npm install
+
+# OR using Yarn
+yarn
+```
+then run this to install the pod dependencies
+```bash
+cd ios
+pod install
+```
+Make sure you have your environment configuration set up. Your android studio set up, environment variable in your shell. Also, run:
 ```bash
 npx react-native doctor
 ```
