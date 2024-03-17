@@ -5,23 +5,23 @@
  * @format
  */
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import NavigationContainer from './src/shared/navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import store from './src/store';
+import GlobalContext from './src/contexts/globalContext';
 
+SplashScreen.hide();
 function App(): React.JSX.Element {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   return (
     <Provider store={store}>
-      <SafeAreaProvider style={{flex: 1}}>
-        <NavigationContainer />
-      </SafeAreaProvider>
+      <GlobalContext>
+        <SafeAreaProvider style={{flex: 1}}>
+          <NavigationContainer />
+        </SafeAreaProvider>
+      </GlobalContext>
     </Provider>
   );
 }

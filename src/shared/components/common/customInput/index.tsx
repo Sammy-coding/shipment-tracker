@@ -64,7 +64,6 @@ const AppInput = forwardRef((props: Props, ref: any) => {
     labelColor,
     inputContainer,
     container,
-    error,
     success,
     labelWrapper,
     isLabelAnimated,
