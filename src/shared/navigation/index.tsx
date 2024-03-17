@@ -24,13 +24,13 @@ const NavigationContainer = () => {
               component={SplashScreen}
             />
           </Stack.Group>
-        ) : isAuthSuccess ? (
+        ) : !isAuthSuccess ? (
           <Stack.Group>
-            <Stack.Screen name="Auth" component={AuthNavigation} />
+            <Stack.Screen name={CONSTANTS.AUTH} component={AuthNavigation} />
           </Stack.Group>
         ) : (
           <Stack.Group>
-            <Stack.Screen name="App" component={AppNavigation} />
+            <Stack.Screen name={CONSTANTS.APP} component={AppNavigation} />
           </Stack.Group>
         )}
       </Stack.Navigator>

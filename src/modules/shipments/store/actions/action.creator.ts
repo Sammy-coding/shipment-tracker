@@ -5,7 +5,7 @@ import {IShipmentReq} from '../../dto';
 
 export const shipment = createAsyncThunk(
   GET_ALL_SHIPPMENTS,
-  async (data: IShipmentReq, thunkApi) => {
+  async (data: IShipmentReq) => {
     const response = await clientRequest.shipment.retrieve(data);
     return response?.data?.message;
   },
@@ -13,7 +13,7 @@ export const shipment = createAsyncThunk(
 
 export const shipmentStatus = createAsyncThunk(
   GET_SHIPMENTS_STATUS,
-  async (data: IShipmentReq, thunkApi) => {
+  async (data: IShipmentReq) => {
     const response = await clientRequest.shipment.retrieve(data);
     return response?.data?.message;
   },

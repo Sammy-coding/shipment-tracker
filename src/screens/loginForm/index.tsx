@@ -84,10 +84,9 @@ const LoginFormScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{flex: 1}}
+      style={styles.keyboardView}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? hp(64) : hp(-60)}>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp(64) : hp(-100)}>
       <Container pt={20} bg={colors.white} style={styles.container}>
         {loading && <Loader />}
         <LoginHeader onClose={handleClose} />

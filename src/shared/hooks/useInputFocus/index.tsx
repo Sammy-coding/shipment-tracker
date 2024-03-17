@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useRef, useState} from 'react';
 import {colors} from '../../../assets/colors';
 import {hp} from '../../utils/responsive';

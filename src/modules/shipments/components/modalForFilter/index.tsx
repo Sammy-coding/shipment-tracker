@@ -27,7 +27,6 @@ interface Props {
 const ModalForFilter = (props: Props) => {
   const dispatch = useAppDispatch();
   const {statusData, statusLoading} = useAppSelector(state => state.shipment);
-  console.log(statusData, 'data');
 
   const {onCancel, onSelect, selected, onDone} = props;
 
@@ -44,6 +43,7 @@ const ModalForFilter = (props: Props) => {
     dispatch(shipmentStatus(dataToBeSent));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <Container style={styles.container} wt={393} ht={282}>
       <Container mt={10}>
