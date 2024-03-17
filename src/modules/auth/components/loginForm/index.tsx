@@ -11,11 +11,14 @@ interface Props {
   username: string;
   password: string;
   onChange: (text: string, name: string) => void;
+  usernameError: string;
+  passwordError: string;
 }
 
 const LoginForm = (prop: Props) => {
-  const {url, username, password, onChange} = prop;
-  // const urlRef = useRef() as any;
+  const {url, username, password, onChange, passwordError, usernameError} =
+    prop;
+
   const {
     inputContainerStyle: urlInputContainerStyle,
     onFocused: onUrlFocused,
@@ -31,7 +34,7 @@ const LoginForm = (prop: Props) => {
     inputStyle: userInputStyle,
     translateUp: userTranslateUp,
     labelStyle: userLabelStyle,
-  } = useInputFocus(username);
+  } = useInputFocus(username, usernameError);
   const {
     inputContainerStyle: passwordInputContainerStyle,
     onFocused: onPasswordFocused,
@@ -39,7 +42,7 @@ const LoginForm = (prop: Props) => {
     inputStyle: passwordInputStyle,
     translateUp: passwordTranslateUp,
     labelStyle: passwordLabelStyle,
-  } = useInputFocus(password);
+  } = useInputFocus(password, passwordError);
 
   return (
     <Container style={styles.container} mh={16} mt={38}>
@@ -86,6 +89,7 @@ const LoginForm = (prop: Props) => {
           inputContainer={styles.inputContainer}
           inputStyle={{...userInputStyle.inputStyle}}
           isLabelAnimated={true}
+          error={usernameError}
         />
       </Container>
 
@@ -110,6 +114,7 @@ const LoginForm = (prop: Props) => {
           }}
           inputStyle={{...passwordInputStyle.inputStyle}}
           secureTextEntry={true}
+          error={passwordError}
         />
       </Container>
     </Container>

@@ -8,8 +8,9 @@ import LoginButton from '../../modules/auth/components/loginButton';
 import {useNavigation} from '@react-navigation/native';
 import {login} from '../../modules/auth/store/actions/action.creator';
 import {useAppDispatch, useAppSelector} from '../../shared/types/redux.types';
-import {ActivityIndicator} from 'react-native';
 import Loader from '../../shared/components/common/customLoader';
+import {isEmailValid, isPasswordValid} from '../../shared/utils/helpers';
+import {Alert} from 'react-native';
 
 const LoginFormScreen = () => {
   const navigation = useNavigation();
@@ -19,12 +20,33 @@ const LoginFormScreen = () => {
     url: '',
     password: '',
     username: '',
-    validateError: {},
+    validateError: {} as any,
   });
 
-  const validateProperty = () => {};
+  const validateProperty = (name: string, value: string) => {
+    if (name === 'username') {
+      const message = isEmailValid(value);
+      return message;
+    }
+    if (name === 'password') {
+      const message = isPasswordValid(value);
+      return message;
+    }
+  };
 
   const handlePress = () => {
+    const passwordErrorMessage = validateProperty('password', state.password);
+    const usernameErrorMessage = validateProperty('username', state.username);
+    if (passwordErrorMessage) {
+      Alert.alert(passwordErrorMessage);
+      return;
+    }
+
+    if (usernameErrorMessage) {
+      Alert.alert(usernameErrorMessage);
+      return;
+    }
+
     const data = {
       usr: state.username,
       pwd: state.password,
@@ -33,7 +55,15 @@ const LoginFormScreen = () => {
     dispatch(login(data));
   };
   const handleChange = (text: string, name: string) => {
-    setState({...state, [name]: text});
+    const validateError = {...state.validateError};
+    const errorMessage = validateProperty(name, text);
+    if (errorMessage) {
+      validateError[name] = errorMessage;
+    } else {
+      delete validateError[name];
+    }
+
+    setState({...state, [name]: text, validateError: validateError});
   };
 
   const handleClose = () => {
@@ -47,6 +77,8 @@ const LoginFormScreen = () => {
       {loading && <Loader />}
       <LoginHeader onClose={handleClose} />
       <LoginForm
+        usernameError={state.validateError['username']}
+        passwordError={state.validateError['password']}
         url={state.url}
         password={state.password}
         onChange={handleChange}

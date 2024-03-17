@@ -3,7 +3,7 @@ import {colors} from '../../../assets/colors';
 import {hp} from '../../utils/responsive';
 import {Animated} from 'react-native';
 
-export const useInputFocus = (text: string) => {
+export const useInputFocus = (text: string, error: null | string = null) => {
   const [inputContainerStyle, setInputContainerStyle] = useState<{
     borderWidth: number;
     borderColor: string | null;
@@ -53,6 +53,27 @@ export const useInputFocus = (text: string) => {
       setInputContainerStyle({
         borderColor: null,
         borderWidth: 0,
+      });
+      setInputStyle({
+        placeholder: false,
+        inputStyle: {
+          height: hp(22),
+        },
+      });
+      setLabelStyle({
+        fontSize: hp(11),
+        fontWeight: '400',
+        color: colors.placeholderSecondaryColor,
+      });
+      Animated.timing(translateUp, {
+        duration: 1000,
+        toValue: hp(20),
+        useNativeDriver: false,
+      }).start(() => {});
+    } else if (error) {
+      setInputContainerStyle({
+        borderColor: colors.errorColor,
+        borderWidth: 1,
       });
       setInputStyle({
         placeholder: false,
